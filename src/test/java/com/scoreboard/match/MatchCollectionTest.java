@@ -1,7 +1,6 @@
 package com.scoreboard.match;
 
 import com.scoreboard.match.impl.FootballMatch;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,9 +31,10 @@ class MatchCollectionTest {
     @Test
     void testIsAnyTeamInAMatch() {
         matchCollection.addMatch(new FootballMatch("France", "Germany"));
-        Assertions.assertTrue(matchCollection.containsMatch("France", "Germany"));
-        Assertions.assertFalse(matchCollection.containsMatch("Brazil", "Argentina"));
-        ;
+        Assertions.assertTrue(matchCollection.isAnyTeamInAMatch("France", "Germany"));
+        Assertions.assertTrue(matchCollection.isAnyTeamInAMatch("Germany", "Finland"));
+        Assertions.assertTrue(matchCollection.isAnyTeamInAMatch("France", "Spain"));
+        Assertions.assertFalse(matchCollection.isAnyTeamInAMatch("Brazil", "Argentina"));
     }
 
     @Test
