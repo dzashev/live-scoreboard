@@ -29,4 +29,16 @@ class MatchTest {
         assertEquals(3, footballMatch.getAwayScore());
 
     }
+
+    @Test
+    void testGetStartTime() {
+        FootballMatch footballMatch = new FootballMatch("France", "Italy");
+        assertNotNull(footballMatch.getStartTime());
+    }
+
+    @Test
+    void testToString() {
+        FootballMatch footballMatch = new FootballMatch("France", "Italy");
+        assertEquals("France 0 - Italy 0", footballMatch.toString());
+    }
 }

@@ -67,14 +67,12 @@ class ScoreboardServiceTest {
     void testFinishMatchSuccessfully() {
         scoreboardService.startMatch("Brazil", "Germany");
         assertDoesNotThrow(() -> scoreboardService.finishMatch("Brazil", "Germany"));
-        assertTrue(scoreboardService.getSummary().isEmpty(), "Match should be removed from the list.");
+        assertTrue(scoreboardService.getMatchSummary().isEmpty(), "Match should be removed from the list.");
     }
 
     @Test
     void testFinishNonExistentMatch() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            scoreboardService.finishMatch("Brazil", "Germany");
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> scoreboardService.finishMatch("Brazil", "Germany"));
         assertEquals("Match not found.", exception.getMessage());
     }
 
@@ -108,11 +106,13 @@ class ScoreboardServiceTest {
         scoreboardService.updateScore("Argentina", "Australia",3,1);
 
         assertEquals(scoreboardService.getMatchSummary(),
-                "1. Uruguay 6 - Italy 6\n" +
-                        "2. Spain 10 - Brazil 2\n" +
-                        "3. Mexico 0 - Canada 5\n" +
-                        "4. Argentina 3 - Australia 1\n" +
-                        "5. Germany 2 - France 2\n"
+                """
+                        1. Uruguay 6 - Italy 6
+                        2. Spain 10 - Brazil 2
+                        3. Mexico 0 - Canada 5
+                        4. Argentina 3 - Australia 1
+                        5. Germany 2 - France 2
+                        """
         );
     }
 }
